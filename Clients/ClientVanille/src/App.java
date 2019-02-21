@@ -1,14 +1,15 @@
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
-import accesseur.PenseeDAO;
+import accesseur.cache.PenseeDAO;
 import modele.Pensee;
 import outils.Journal;
 import vue.VueInspirationVisuelle;
 
 public class App {
 
-	public static void main(String[] parametres) {
+	public static void main(String[] parametres) throws SQLException {
 
 		//Journal.activer();
 		Journal.activerNiveau(0);
@@ -17,6 +18,8 @@ public class App {
 		//penseeDAO.ajouterPensee(pensee);		
 		
 		VueInspirationVisuelle.launch(VueInspirationVisuelle.class, parametres);
+		PenseeDAO cachePenseeDAO = new PenseeDAO();
+		cachePenseeDAO.enregistrerPensees(new Pensee("Moi","La vie c'est pas du gateau"));
 		
 		
 	}
